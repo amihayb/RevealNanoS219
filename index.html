@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZ5Y2X9HPK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-MZ5Y2X9HPK');
+  </script> -->
+
+  <link href="StyleSheet.css" rel="stylesheet">
+  <link rel="shortcut icon" href="images/NanoIcon.png" />
+  <link rel="icon" href="images/NanoIcon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+  <div class="topnav" id="topnav" margin-left="260px" padding="0px 10px">
+    <img src="https://www.nanomotion.com/wp-content/uploads/image-removebg-preview-8.d110a0.webp"" alt="Nanomotion logo" class="headImg" onclick="window.location.href=''">
+    <span><i class="fa fa-folder-open" title="Open File"></i>
+      <input id="file-selector" type="file" />
+    </span>
+    <a onclick="export2csv()" title="Export to CSV"><i class="fa fa-save"></i></a>
+    <a onclick="cutToZoom()" title="Cut to Zoomed Area"><i class="fa fa-cut"></i></a>
+    <a onclick="alert('Hope I helped you understand your data.\n\nFor support, contact me:\nAmihay Blau\nmail: amihay@blaurobotics.co.il\nPhone: +972-54-6668902');"
+      title="About"><i class="fa fa-info-circle"></i></a>
+    <img
+      onclick="alert('Hope I helped you understand your data.\n\nFor support, contact me:\nAmihay Blau\nmail: amihay@blaurobotics.co.il\nPhone: +972-54-6668902');"
+      height="36" src="images/logo-title.svg" alt="Blau Robotics" id="LogoBlau">
+  </div>
+  <div class="sidenav" id="sidenav">
+    <a href="#" class="button" onclick="Travel();">Travel</a>
+    <a href="#" class="button" onclick="NaturalFreq();">Natural Frequency</a>
+    <a href="#" class="button" onclick="CommandVelocity();">Command - Velocity</a>
+    <a href="#" class="button" onclick="CommandPosition();">Command - Position</a>
+    <a href="#" class="button" onclick="EncoderJitter();">Encoder Jitter</a>
+    <a href="#" class="button" onclick="drift();">Drift</a>
+    <!-- <a href="#" class="button"  onclick="replacePic('images/show_sensors.png'); replaceText('ShowSensors');">Show Sensors</a> -->
+    <a href="#" class="button" onclick="ShowSensors();">Show Sensors</a>
+    <div id="xaxis_dropdown"></div>
+    <div class="checkboxesPlace" id="checkboxesPlace"></div>
+  </div>
+  <div id="drop-zone" ondrop="handleDrop(event)" ondragover="handleDragOver(event)"
+    ondragleave="handleDragLeave(event)">
+    <div id="explenation_text">
+      Drag & Drop CSV File Here
+      <br>
+      <picture id="picture_main">
+        <source media="(min-width: 1024px)"
+          data-srcset="https://www.nanomotion.com/wp-content/uploads/Stage1_B.jpg"
+          srcset="https://www.nanomotion.com/wp-content/uploads/Stage1_B.jpg">
+        <img id="img_main" data-src="https://www.nanomotion.com/wp-content/uploads/Stage1_B.jpg"
+          alt="" width="1240" height="711" class="lazy thumb-img entered loaded" data-ll-status="loaded"
+          src="https://www.nanomotion.com/wp-content/uploads/Stage1_B.jpg">
+      </picture>
+      <br><br><br>
+      <div id="explenation_label">
+        Reveal – Visualize your data<br>
+        <br>
+        • Load Telemetry Records.<br>
+        • Select the appropriate test button to visualize scenario data.<br>
+        <br>
+        Best of luck!<br>
+      </div>
+    </div>
+    <table id="resultsTable" border="1"></table>
+    <!-- Table will be populated by JavaScript -->
+    </table>
+    <div class="plot-area" id="plot-area">
+    </div>
+  </div>
+  <div id="limitsModal" class="modal limits-modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeLimitsModal()">&times;</span>
+        <h2>Set Movement Limits</h2>
+        <form id="parameterForm">
+            <label for="LimitTr1">Traverse Limit 1:</label><br>
+            <input type="text" id="LimitTr1" name="LimitTr1" value="330"><br>
+            <label for="LimitTr2">Traverse Limit 2:</label><br>
+            <input type="text" id="LimitTr2" name="LimitTr2" value="30"><br>
+            <label for="LimitEl1">Elevation Limit 1:</label><br>
+            <input type="text" id="LimitEl1" name="LimitEl1" value="-30"><br>
+            <label for="LimitEl2">Elevation Limit 2:</label><br>
+            <input type="text" id="LimitEl2" name="LimitEl2" value="60"><br><br>
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+    </div>
+</div>
+  <script src="reveal.js"></script>
+</body>
+
+</html>

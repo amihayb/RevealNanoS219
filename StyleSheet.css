@@ -1,0 +1,399 @@
+body {
+    font-family: "Lato", sans-serif;
+    margin-top: 0;
+    padding-top: 40px;
+  }
+
+  #file-selector {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  span {
+    position: relative;
+  }
+
+  .button {
+    background-color: #f7faff;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 10px;
+    border-radius: 12px;
+  }
+
+  .button.active {
+    background-color: #c9dbf9;
+  }
+
+  .headImg {
+    padding: 6px 20px;
+    width: 230px;
+  }
+
+  .image {
+    width: 100%; /* sets the width of the image to the width of the parent container */
+    max-width: 540px; /* sets the maximum width of the image to 300px */
+  }
+
+  .topnav {
+    width: 100%;
+    left: 0;
+    top: 0;
+    position: fixed;
+    background-color: #ebf0f8;
+    display: flex;
+    align-items: center;
+    color: #344563;
+    overflow: hidden;
+    z-index: 10; /* Ensure topnav is above sidenav */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5); /* Add shadow */;
+  }
+  
+  .topnav a , .topnav span , .topnav custom-file-upload{
+    float: left;
+    color: #344563;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 12px
+  }
+
+  .topnav img {
+    cursor: pointer;
+  }
+
+  #LogoBlau {
+    margin-left: auto;
+    margin-right: 20px; /* Add padding from the right edge */
+
+  }
+
+  .topnav a:hover, span:hover {
+    background-color: #c9dbf9;
+    color: #202124;
+  }
+
+  .topnav input {
+    text-align: left;
+    width: 70%;
+    font-size: 17px;
+  }
+
+  .sidenav {
+    height: 100%;
+    width: 280px;
+    position: fixed;
+    z-index: 1;
+    top: 30;
+    left: 0;
+    color: #344563;
+    background-color: #f7faff;
+    overflow-x: hidden;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    z-index: 5; /* Ensure sidenav is below topnav */
+    padding-top: 30px; /* Adjust padding to avoid overlap with topnav */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5); /* Add shadow */
+  }
+  
+  .sidenav a {
+    padding: 6px 6px 6px 6px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #344563;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    background-color: #c9dbf9;
+    color: #202124;
+  }
+  .sidenav h1{
+    text-align: center;
+  }
+  .sidenav h2{
+    text-align: center;
+  }
+  .sidenav select{
+    width: 77%;
+  }
+
+  .checkboxesPlace {
+    max-height: 80%;
+    position: relative;
+    overflow-y: auto;
+  }
+
+  .pale {
+    transition: background-color 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.1);
+    opacity: 0.5;
+  }
+
+  #explenation_text {
+    top: 100;
+    margin-left: 300px; /* Same as the width of the sidenav */
+    margin-top: 40px;
+    font-size: 18px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    line-height: 27px
+  }
+  
+  .explenation_text{
+    margin-top: 500px; /* Adjust this value based on the height of your topnav */
+    padding: 20px;
+    margin-left: 250px; /* Adjust this value based on the width of your sidenav */
+  }
+
+  .plot-area {
+    margin-left: 260px; /* Same as the width of the sidenav */
+    /*margin-top: 100px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 0px;
+  }
+  
+  @media screen and (max-height: 750px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  
+  /* The container */
+  .container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* The Plotly table */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+      /* Ensures all columns have the same width */
+    }
+  
+    td {
+      /*border: 1px solid black;*/
+      border: none; /* Remove borders */
+      padding: 0px;
+      width: 50%;
+      /* Ensures each column takes up equal space */
+      height: 30px;
+      /* Adjust height as needed */
+    }
+  
+    .plot-container {
+      width: 100%;
+      height: 350px;
+    }
+
+    /* The results Table */
+    #resultsTable {
+            border-collapse: collapse;
+            margin: 0 auto; /* Center the table */
+            margin-top: 60px; /* Same as the width of the topnav */
+        }
+
+        #resultsTable th, #resultsTable td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        #resultsTable th {
+            background-color: #f7faff;
+        }
+
+        /* Ensure table fits the content */
+        #resultsTable, th, td {
+            width: auto;
+            height: auto;
+            white-space: nowrap;
+        }
+    
+
+        .modal {
+          display: none; /* Hide the modal by default */
+          position: fixed;
+          z-index: 1;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0,0,0,0.4);
+          padding-top: 90px;
+          padding-left: 310px;
+      }
+
+      .limits-modal .modal-content {
+          position: absolute;
+          background-color: #fefefe;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%;
+          max-width: 300px;
+          text-align: center; /* Center content */
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          animation-name: animatetop;
+          animation-duration: 0.4s;
+      }
+
+      @keyframes animatetop {
+          from {top: -300px; opacity: 0}
+          to {top: 0; opacity: 1}
+      }
+
+      .limits-modal .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+      }
+
+      .limits-modal .close:hover,
+      .limits-modal .close:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+      }
+
+      .limits-modal label {
+          color: #344563; /* Color for the labels */
+      }
+
+      .limits-modal input[type="text"] {
+          width: calc(100% - 24px);
+          padding: 8px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+          text-align: center; /* Center the input text */
+      }
+
+      .limits-modal button {
+          background-color: #c9dbf9; /* Updated background color */
+          color: #344563; /* Updated font color */
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+      }
+
+      .limits-modal button:hover {
+          opacity: 0.8;
+      }
+
+      .limits-modal h2 {
+          color: #344563;
+      }
+
+    
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .context-menu {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    padding: 12px 0;
+    width: 240px;
+    background-color: #fff;
+    border: solid 1px #dfdfdf;
+    box-shadow: 1px 1px 2px #cfcfcf;
+}
+
+.context-menu--active {
+    display: block;
+}
+
+.context-menu__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.context-menu__item {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.context-menu__item:last-child {
+    margin-bottom: 0;
+}
+
+.context-menu__link {
+    display: block;
+    padding: 4px 12px;
+    color: #0066aa;
+    text-decoration: none;
+}
+
+.context-menu__link:hover {
+    color: #fff;
+    background-color: #0066aa;
+}
