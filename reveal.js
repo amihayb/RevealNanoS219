@@ -726,6 +726,20 @@ function CommandPosition() {
 }
 
 
+function Stabilization() {
+  cleanUp();
+  
+  const results = [
+    { parameter: 'Max. Movement', value1: max(rows.FPOS) - min(rows.FPOS), successCriteria: 25, successMethod: "bigger" },
+    { parameter: 'Position Error STD', value1: std(rows.PE), successCriteria: 1, successMethod: "bigger" }
+  ];
+  drawTableOneCol(results);
+
+  const pl = createPlotlyTable(2, 1, 'plot-area');
+  plot(pl, 0, 0, rows.TIME, rows.FPOS, traceName = 'Position', title = 'Position', xLabel = 'Time [ms]', yLabel = 'FPOS [mm]', color = null, showLeg = false);
+  plot(pl, 1, 0, rows.TIME, rows.PE, traceName = 'Position Error', title = 'Position Error', xLabel = 'Time [ms]', yLabel = 'PE [mm]', color = null, showLeg = false);
+}
+
 
 function drift() {
   cleanUp();
@@ -1156,14 +1170,14 @@ function fixAngle(y, x) {
   return yo;
 }
 
-function std(v) {
-  mu = mean(v);
-  sum = 0;
-  for (var i = 0; i < v.length; i++) {
-    sum += Math.pow(Math.abs(v[i] - mu), 2);
-  }
-  return Math.sqrt(sum / (v.length - 1));
-}
+// function std(v) {
+//   mu = mean(v);
+//   sum = 0;
+//   for (var i = 0; i < v.length; i++) {
+//     sum += Math.pow(Math.abs(v[i] - mu), 2);
+//   }
+//   return Math.sqrt(sum / (v.length - 1));
+// }
 
 function export2csv() {
 
@@ -1290,6 +1304,8 @@ let removeMean = (array) => array.map((item, idx, all) => parseFloat(item) - mea
 let mean = (array) => array.reduce((a, b) => parseFloat(a) + parseFloat(b)) / array.length;
 
 const derivative = arr => arr.slice(1).map((val, index) => 333 * (val - arr[index]));
+
+const std = arr => Math.sqrt(arr.map(x => Math.pow(x - mean(arr), 2)).reduce((a, b) => a + b) / (arr.length-1));
 
 const minPositive = arr => {
   const positives = arr.filter(num => num > 0);
